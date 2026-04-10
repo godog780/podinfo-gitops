@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: podinfo
 spec:
+  replica: 3
   minReadySeconds: 3
   revisionHistoryLimit: 5
   progressDeadlineSeconds: 60
@@ -46,7 +47,7 @@ spec:
         - --random-error=false
         env:
         - name: PODINFO_UI_COLOR
-          value: "#34577c"
+          value: "#green"
         livenessProbe:
           exec:
             command:
