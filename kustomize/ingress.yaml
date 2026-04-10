@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: podinfo
+  namespace: podinfo   # GitOps Source의 targetNamespace와 맞춤
+  annotations:
+    kubernetes.io/ingress.class: kommander-traefik
+spec:
+  rules:
+  - host: podinfo.berry.ad
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: podinfo
+            port:
+              number: 9898
