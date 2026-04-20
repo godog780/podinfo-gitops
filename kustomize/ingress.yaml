@@ -2,10 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: podinfo
-  namespace: podinfo   # GitOps Source의 targetNamespace와 맞춤
+  namespace: podinfo
   annotations:
     kubernetes.io/ingress.class: kommander-traefik
+    cert-manager.io/cluster-issuer: kommander-ca
 spec:
+  tls:
+  - hosts:
+    - podinfo.berry.ad
+    secretName: podinfo-tls
   rules:
   - host: podinfo.berry.ad
     http:
